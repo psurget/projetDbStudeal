@@ -22,7 +22,45 @@ namespace ProjetStudeal_Final.Controllers
             return View();
         }
 
-       
-        
+        public IActionResult Connect ( Member ID )
+        {
+            var req = from m in context.Member
+                      where m.Id.Equals(ID)
+                      select m;
+
+            if( req.Count()>0 )
+            {
+                ViewBag.login = req;
+                return View("Details");
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        //affichage du formulaire
+        [HttpGet]
+        [ActionName("Create")]
+        public IActionResult CreateMember()
+        {
+            return View();
+        }
+
+        //traitement du formulaire
+        [HttpPost]
+        [ActionName("Create")]
+        public IActionResult CreateMember([Bind(include: "LastName, FirstName, CreationDate")]Member m)
+        {
+            if (ModelState.IsValid)
+            {
+                context.Add(m);
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View();
+            }
+        }
+
     }
 }

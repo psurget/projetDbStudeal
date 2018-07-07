@@ -7,7 +7,7 @@
 <h2>Accueil</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Nouvelle inscription</a>
 </p>
 <table class="table">
     <thead>
@@ -33,31 +33,34 @@
             <th></th>
         </tr>
     </thead>
+
+    @if (!(Model == null))
+    {
     <tbody>
-    @if(!(Model==null)){
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsTutor)
-            </td>
-            <td>
-                @Html.ActionLink("Connecter", "Connect", new { id=item.Id })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsTutor)
+                </td>
+                <td>
+                    @Html.ActionLink("Connecter", "Connect", new { id = item.Id })
+                </td>
+            </tr>
         }
- 
-    </tbody>
-</table>
+        <!-- end foreach -->
+        </tbody>
+    } <!-- end if -->
+    </table>
