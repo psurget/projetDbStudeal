@@ -10,34 +10,23 @@ namespace ProjetStudeal_Final.Controllers
 {
     public class HomeController : Controller
     {
+        DBStudealContext context = new DBStudealContext();
+        
+        public HomeController(DBStudealContext _context)
+        {
+            this.context = _context;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            return View("Dashboard");
         }
 
-        public IActionResult About()
+        public IActionResult Dashboard()
         {
-            ViewData["Message"] = "Your application description page.";
 
-            return View();
         }
 
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        
     }
 }

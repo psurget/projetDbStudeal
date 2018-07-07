@@ -7,8 +7,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ProjetStudeal_Final.Models;
 
 namespace ProjetStudeal_Final
 {
@@ -24,6 +26,10 @@ namespace ProjetStudeal_Final
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //     Ajouter le connectionString comme un service de démarrage automatique
+            services.AddDbContext<DBStudealContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("MyConnection")));
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
