@@ -1,4 +1,4 @@
-﻿@model ProjetStudeal_Final.Startup
+﻿@model IEnumerable<ProjetStudeal_Final.Models.Member>
 
 @{
     ViewData["Title"] = "Index";
@@ -6,47 +6,58 @@
 
 <h2>Accueil</h2>
 
-<div>
-    <h4>Ouverture de session</h4>
-    <hr />
-</div>
-<div>
-
-    <a asp-action="Index">Accueil</a>
-</div>
-
-    //affichage du formulaire
-    [HttpGet]
-    [ActionName("Create")]
-    public IActionResult CreateMember()
-    {
-        return View();
-    }
-    //affichage du formulaire
-    [HttpGet]
-
-    public IActionResult Create(int id)
-    {
-        Membre m = DBStudeal.Membre.Find(id);
-        return View(s);
-    }
-
-    //traitement du formulaire
-    [HttpPost]
-    [ActionName("Create")]
-    public IActionResult CreateStudent([Bind(include: "LastName, FirstMidName, EnrollmentDate")]Student s)
-    {
-
-        if (ModelState.IsValid)
-        {
-            context.Add(s);
-            context.SaveChanges();
-            return RedirectToAction("Index");
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsTutor)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @if(!(Model==null)){
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsTutor)
+            </td>
+            <td>
+                @Html.ActionLink("Connecter", "Connect", new { id=item.Id })
+            </td>
+        </tr>
+}
         }
-        else
-        {
-            return View();
-        }
-    }
-
-
+ 
+    </tbody>
+</table>
