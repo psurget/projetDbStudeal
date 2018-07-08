@@ -39,7 +39,6 @@ namespace ProjetStudeal_Final.Controllers
 
         //affichage du formulaire
         [HttpGet]
-        [ActionName("Create")]
         public IActionResult CreateMember()
         {
             return View();
@@ -47,8 +46,7 @@ namespace ProjetStudeal_Final.Controllers
 
         //traitement du formulaire
         [HttpPost]
-        [ActionName("Create")]
-        public IActionResult CreateMember([Bind(include: "LastName, FirstName, CreationDate")]Member m)
+        public IActionResult CreateMember([Bind(include:"FirstName, LastName, UserName, Password")]Member m)
         {
             if (ModelState.IsValid)
             {
