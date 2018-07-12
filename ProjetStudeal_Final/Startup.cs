@@ -28,7 +28,8 @@ namespace ProjetStudeal_Final
         {
             //     Ajouter le connectionString comme un service de démarrage automatique
             services.AddDbContext<DBStudealContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("MyConnection")));
+            options.UseSqlServer(Configuration.GetConnectionString("MyConnection")));       
+            services.AddMvc();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -36,9 +37,7 @@ namespace ProjetStudeal_Final
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+    
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

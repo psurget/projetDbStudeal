@@ -1,68 +1,61 @@
 ﻿@model IEnumerable<ProjetStudeal_Final.Models.Member>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Accueil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Accueil</h2>
 
 <p>
-    <a asp-action="CreateMember">Créer un compte</a>
+    <a asp-action="Create">Créer un compte</a>
 </p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Prénom
+            </th>
+            <th>
+               Nom
+            </th>
+            <th>
+                Utilisateur
+            </th>
+            <th>
+                Mot de passe
+            </th>
+            <th>
+                Est tuteur ?
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
 
-@if (!(Model == null))
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    ID
-                </th>
-                <th>
-                    Prénom
-                </th>
-                <th>
-                    Nom
-                </th>
-                <th>
-                    Utilisateur
-                </th>
-                <th>
-                    Mot de passe
-                </th>
-                <th>
-                    Est Tuteur ?
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FirstName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LastName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UserName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IsTutor)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Connecter", "Connect", new { id = item.Id })
-                    </td>
-                </tr>
-            }
-            <!-- end foreach -->
-        </tbody>
-
-    </table>
-} <!-- end if -->
+@foreach (var item in Model)
+     {
+        <tr>
+            <td>
+                @item.FirstName
+            </td>
+            <td>
+                @item.LastName
+            </td>
+            <td>
+                @item.UserName
+            </td>
+            <td>
+                @item.Password
+            </td>
+            <td>
+                @item.IsTutor
+            </td>
+            <td>
+                @Html.ActionLink("Détails", "Details", new { id=item.Id })
+            </td>
+        </tr>
+     }
+    </tbody>
+ 
+</table>

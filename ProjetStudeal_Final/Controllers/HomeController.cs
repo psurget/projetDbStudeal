@@ -19,9 +19,12 @@ namespace ProjetStudeal_Final.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            List<Member> Members_list = context.Member.ToList();
+           ViewBag.MembersList = "test";
+            return View("index",Members_list);
         }
 
+        [ActionName("connect2")]
         public IActionResult Connect ( Member ID )
         {
             var req = from m in context.Member
@@ -39,14 +42,15 @@ namespace ProjetStudeal_Final.Controllers
 
         //affichage du formulaire
         [HttpGet]
+       // [ActionName("Create")]
         public IActionResult CreateMember()
         {
-            return View();
+            return View("CreateMember");
         }
 
         //traitement du formulaire
         [HttpPost]
-        public IActionResult CreateMember([Bind(include:"FirstName, LastName, UserName, Password")]Member m)
+        public IActionResult CreateMember([ Bind(include:"FirstName, LastName, UserName, Password")] Member m)
         {
             if (ModelState.IsValid)
             {
