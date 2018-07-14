@@ -6,11 +6,6 @@ namespace ProjetStudeal_Final.Models
 {
     public partial class Member
     {
-        public Member()
-        {
-            MeetingRequest = new HashSet<MeetingRequest>();
-            Tutoring = new HashSet<Tutoring>();
-        }
         [Key]
         public int Id { get; set; }
         public string FirstName { get; set; }
@@ -24,5 +19,24 @@ namespace ProjetStudeal_Final.Models
 
         public virtual ICollection<MeetingRequest> MeetingRequest { get; set; }
         public virtual ICollection<Tutoring> Tutoring { get; set; }
+
+
+        public Member()
+        {
+            MeetingRequest = new HashSet<MeetingRequest>();
+            Tutoring = new HashSet<Tutoring>();
+        }
+
+        public Member(string firstName, string lastName, string userName, int isTutor)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            UserName = userName;
+            IsTutor = isTutor;
+        }
+
+
+
+
     }
 }

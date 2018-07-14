@@ -2,10 +2,11 @@
 
 @{
     ViewData["Title"] = "Accueil";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Accueil</h2>
+<h2>Bienvenue sur l'ecran d'accueil</h2>
+<h4>Cliquez sur connexion pour ouvrir une session.</h4>
 
 <p>
     <a asp-action="CreateMember">Créer un compte</a>
@@ -52,8 +53,7 @@
                 @item.IsTutor
             </td>
             <td>
-                @Html.ActionLink("Détails", "Details", new { id = item.Id })
-                @Html.ActionLink("Connecter", "connect2", new { id = item.Id })
+                @Html.ActionLink("Connexion", "connect2", new { id = item.Id })
             </td>
         </tr>
      }

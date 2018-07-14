@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ProjetStudeal_Final.Models.Tutoring>
+
+@{
+    ViewData["Title"] = "Tutoring";
+}
+
+<h2>Formations</h2>
+
+<p>
+    <a asp-action="Create"> + Créer un nouveau </a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Titre
+            </th>
+            <th>
+                Date créée
+            </th>
+            <th>
+                Nom du tuteur
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tutor.FirstName)
+            </td>
+            <td>
+                <a asp-action="Inscription" asp-route-id="@item.TutoringId">M'inscrire</a> 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
