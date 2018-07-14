@@ -1,14 +1,16 @@
 ﻿@model ProjetStudeal_Final.Models.Member
 
 @{
-    
-    ViewData["Title"] = "CreateMember";
+    ViewData["Title"] = "Créer un compte";
 }
 
-<h2>CreateMember</h2>
+<h2>Création de votre compte</h2>
 
-<h4>Member</h4>
+<h4>Membre</h4>
 <hr />
+<div>
+    <a asp-action="Index">Accueil</a>
+</div>
 <div class="row">
     <div class="col-md-4">
         <form asp-action="CreateMember">
@@ -45,9 +47,7 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

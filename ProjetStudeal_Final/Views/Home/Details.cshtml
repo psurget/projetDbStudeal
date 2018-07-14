@@ -1,10 +1,10 @@
 ﻿@model ProjetStudeal_Final.Models.Member
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Détails";
 }
 
-<h2>Membre</h2>
+<h2> Bienvenue @Model.FirstName </h2>
 
 <div>
     <h4>Détails</h4>
@@ -12,34 +12,34 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
+            Prénom
         </dt>
         <dd>
             @Html.DisplayFor(model => model.FirstName)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.LastName)
+            Nom de famille
         </dt>
         <dd>
             @Html.DisplayFor(model => model.LastName)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.UserName)
+            Utilisateur
         </dt>
         <dd>
             @Html.DisplayFor(model => model.UserName)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Password)
+            Mot de passe
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Password)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.IsTutor)
+            Tuteur ?
         </dt>
-        <dd>
-            @Html.DisplayFor(model => model.IsTutor)
+        <dd>           
+            @((Model.IsTutor)==1)?"Oui":"Non";          
         </dd>
     </dl>
 </div>

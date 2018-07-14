@@ -1,18 +1,21 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ProjetStudeal_Final.Models
 {
-    public partial class DBStudealContext : DbContext
+    public class DBStudealContext : DbContext
     {
         public DBStudealContext()
         {
+
         }
 
-        public DBStudealContext(DbContextOptions<DBStudealContext> options)
-            : base(options)
+        public DBStudealContext(DbContextOptions<DBStudealContext> options): base(options)
         {
+            AddDataToDatabase();
         }
 
         public virtual DbSet<MeetingRequest> MeetingRequest { get; set; }
@@ -123,5 +126,67 @@ namespace ProjetStudeal_Final.Models
                     .HasConstraintName("FK_TutorID_Tutoring");
             });
         }
+
+        public void AddDataToDatabase()
+        {
+            //remplir la base avec un jeu de test
+            Database.EnsureCreated();
+            //verifier s'il y a des données existants
+            if (Member.Any() || Tutoring.Any())
+            {
+                return;
+            }
+            //ajout des étudiants
+            Member m1 = new Member()
+            {
+                LastName = "Beaudoin",
+                FirstName = "Guillaume",
+                UserName = "beaudoin.guillaume",
+                Password= "12345",
+                IsTutor=0,
+            };
+            Member m2 = new Member()
+            {
+                LastName = "Lamarche",
+                FirstName = "Georges",
+                UserName = "lamarche.georges",
+                Password = "12345",
+                IsTutor = 1,
+            };
+            Member m3 = new Member()
+            {
+                LastName = "Petitpas",
+                FirstName = "Pierre",
+                UserName = "petitpas.pierre",
+                Password = "5678",
+                IsTutor = 1,
+            };
+            Add(m1);
+            Add(m2);
+            Add(m3);
+            SaveChanges();
+            //ajout des cours
+            Tutoring t1 = new Tutoring()
+            {
+                Subject = "ASP NET Core",
+                CreationDate= new DateTime(2018,11,15)
+            };
+            Tutoring t2 = new Tutoring()
+            {
+                Subject = "ASP NET Core",
+                CreationDate = new DateTime(2018,9,12)
+            };
+            Tutoring t3 = new Tutoring()
+            {
+                Subject = "Java EE",
+                CreationDate = new DateTime(2018,10,3)
+            };
+
+            Add(t1);
+            Add(t2);
+            Add(t3);
+            SaveChanges();
+        }
+
     }
 }

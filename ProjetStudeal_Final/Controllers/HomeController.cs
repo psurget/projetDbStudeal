@@ -20,24 +20,22 @@ namespace ProjetStudeal_Final.Controllers
         public IActionResult Index()
         {
             List<Member> Members_list = context.Member.ToList();
-           ViewBag.MembersList = "test";
             return View("index",Members_list);
         }
 
         [ActionName("connect2")]
-        public IActionResult Connect ( Member ID )
+        public IActionResult Connect ( int ID )
         {
-            var req = from m in context.Member
-                      where m.Id.Equals(ID)
-                      select m;
-
-            if( req.Count()>0 )
+            Member m = context.Member.Find(ID);
+            if (m.Equals(null))
             {
-                ViewBag.login = req;
-                return View("Details");
+                return RedirectToAction("Index");
             }
-
-            return RedirectToAction("Index");
+            else
+            {
+                return View("details", m);
+            }
+            
         }
 
         //affichage du formulaire
