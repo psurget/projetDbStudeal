@@ -88,6 +88,20 @@ namespace ProjetStudeal_Final.Controllers
             return View(tuto);
         }
 
+        [HttpGet]
+        public IActionResult NewTuto()
+        {
+            Tutoring t = new Tutoring();
+            return View(t);
+        }
+        [HttpPost]
+        public IActionResult NewTuto()
+        {
+            Tutoring t = new Tutoring(int TutoringId,[Bind(include: "Subject, TutorId, CreationDate")]  );
+            return View("Index");
+        }
+
+
         /* ======== INSCRIPTIONS ======== */
         [HttpGet]
         public IActionResult Inscription(int Id)
