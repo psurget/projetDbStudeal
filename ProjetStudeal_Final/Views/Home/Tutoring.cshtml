@@ -7,7 +7,7 @@
 <h2>Formations</h2>
 
 <p>
-    <a asp-action="Create"> + Créer un nouveau </a>
+    <a asp-action="NewTuto"> + Créer un nouveau </a>
 </p>
 <table class="table">
     <thead>
@@ -37,7 +37,8 @@
                 @Html.DisplayFor(modelItem => item.Tutor.FirstName)
             </td>
             <td>
-                <a asp-action="Inscription" asp-route-id="@item.TutoringId">M'inscrire</a> 
+                <a asp-action="Inscription" asp-route-id="@item.TutoringId">M'inscrire</a>
+                <a asp-action="ShowMeetReq" asp-route-id="@item.TutoringId">Voir les horaires</a>
             </td>
         </tr>
 }

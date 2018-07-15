@@ -23,6 +23,9 @@ namespace ProjetStudeal_Final.Controllers
             return View("Index",Members_list);
         }
 
+        /* ============== MEMBER METHODS =================*/
+
+        /* ======== CONNECT ======== */
         [ActionName("connect2")]
         public IActionResult Connect ( int ID )
         {
@@ -36,19 +39,17 @@ namespace ProjetStudeal_Final.Controllers
             {
                 ViewBag.login = m.Id;
                 return View("Details", m);
-            }
-            
+            }           
         }
+        /* ======== FIN CONNECT ======== */
 
-        //affichage du formulaire
+        /* ======== CREATE MEMBER ======== */
         [HttpGet]
        // [ActionName("Create")]
         public IActionResult CreateMember()
         {
             return View("CreateMember");
         }
-
-        //traitement du formulaire
         [HttpPost]
         public IActionResult CreateMember([ Bind(include:"FirstName, LastName, UserName, Password")] Member m)
         {
@@ -63,35 +64,37 @@ namespace ProjetStudeal_Final.Controllers
                 return View();
             }
         }
+        /* ======== FIN CREATE MEMBER ======== */
 
+        /* ======== MEMBER EDIT ======== */
         [HttpGet]
         public IActionResult MemberEdit(int Id)
         {
             Member m = context.Member.Find(Id);
             return View(m);
         }
-
         [HttpPost]
         public IActionResult MemberEdit(int Id, Member m)
         {
             context.Add(m);
             return View(m);
         }
+        /* ======== FIN MEMBER EDIT ======== */
 
-
+        /* ============== TUTORING METHODS =================*/
         public IActionResult Tutoring()
         {
             List<Tutoring> tuto = context.Tutoring.ToList();
             return View(tuto);
         }
 
+        /* ======== INSCRIPTIONS ======== */
         [HttpGet]
         public IActionResult Inscription(int Id)
         {
             MeetingRequest mr1 = context.MeetingRequest.Find(Id);
             return View(mr1);
         }
-
         [HttpPost]
         public IActionResult Inscription(int Id, [Bind(include: "State, StudentId, TimeSlotId")] MeetingRequest mr1)
         {
@@ -103,7 +106,7 @@ namespace ProjetStudeal_Final.Controllers
             }
             return View();
         }
-
+        /* ======== FIN INSCRIPTIONS ======== */
 
     }
 
