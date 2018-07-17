@@ -6,10 +6,6 @@ namespace ProjetStudeal_Final.Models
 {
     public partial class Tutoring
     {
-        public Tutoring()
-        {
-            TimeSlot = new HashSet<TimeSlot>();
-        }
         [Key]
         public int TutoringId { get; set; }
         [Required]
@@ -19,5 +15,17 @@ namespace ProjetStudeal_Final.Models
 
         public virtual Member Tutor { get; set; }
         public virtual ICollection<TimeSlot> TimeSlot { get; set; }
+
+        public Tutoring()
+        {
+            TimeSlot = new HashSet<TimeSlot>();
+        }
+
+        public Tutoring(string subject, int tutorid, DateTime creationDate)
+        {
+            Subject = subject;
+            TutoringId = tutorid;
+            CreationDate = creationDate;
+        }
     }
 }

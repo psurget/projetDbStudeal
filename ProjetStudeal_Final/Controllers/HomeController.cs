@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ProjetStudeal_Final.Models;
 
@@ -89,17 +86,13 @@ namespace ProjetStudeal_Final.Controllers
         }
 
         [HttpGet]
-        public IActionResult NewTuto()
+        public ActionResult CreateTuto()
         {
             Tutoring t = new Tutoring();
             return View(t);
         }
-        [HttpPost]
-        public IActionResult NewTuto()
-        {
-            Tutoring t = new Tutoring(int TutoringId,[Bind(include: "Subject, TutorId, CreationDate")]  );
-            return View("Index");
-        }
+        
+        
 
 
         /* ======== INSCRIPTIONS ======== */
