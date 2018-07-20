@@ -5,7 +5,7 @@ using ProjetStudeal_Final.Models;
 
 namespace ProjetStudeal_Final.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController:Controller
     {
         DBStudealContext context = new DBStudealContext();
         
@@ -14,7 +14,7 @@ namespace ProjetStudeal_Final.Controllers
             this.context = _context;
         }
 
-        public IActionResult Index()
+        public ActionResult Index()
         {
             List<Member> Members_list = context.Member.ToList();
             return View("Index",Members_list);
@@ -24,7 +24,7 @@ namespace ProjetStudeal_Final.Controllers
 
         /* ======== CONNECT ======== */
         [ActionName("connect2")]
-        public IActionResult Connect ( int ID )
+        public ActionResult Connect ( int ID )
         {
             Member m = context.Member.Find(ID);
 
@@ -43,12 +43,12 @@ namespace ProjetStudeal_Final.Controllers
         /* ======== CREATE MEMBER ======== */
         [HttpGet]
        // [ActionName("Create")]
-        public IActionResult CreateMember()
+        public ActionResult CreateMember()
         {
             return View("CreateMember");
         }
         [HttpPost]
-        public IActionResult CreateMember([ Bind(include:"FirstName, LastName, UserName, Password")] Member m)
+        public ActionResult CreateMember([ Bind(include:"FirstName, LastName, UserName, Password")] Member m)
         {
             if (ModelState.IsValid)
             {
@@ -65,13 +65,13 @@ namespace ProjetStudeal_Final.Controllers
 
         /* ======== MEMBER EDIT ======== */
         [HttpGet]
-        public IActionResult MemberEdit(int Id)
+        public ActionResult MemberEdit(int Id)
         {
             Member m = context.Member.Find(Id);
             return View(m);
         }
         [HttpPost]
-        public IActionResult MemberEdit(int Id, Member m)
+        public ActionResult MemberEdit(int Id, Member m)
         {
             context.Add(m);
             return View(m);
@@ -79,7 +79,7 @@ namespace ProjetStudeal_Final.Controllers
         /* ======== FIN MEMBER EDIT ======== */
 
         /* ============== TUTORING METHODS =================*/
-        public IActionResult Tutoring()
+        public ActionResult Tutoring()
         {
             List<Tutoring> tuto = context.Tutoring.ToList();
             return View(tuto);
@@ -90,31 +90,27 @@ namespace ProjetStudeal_Final.Controllers
         {
             Tutoring t = new Tutoring();
             return View(t);
-        }
-        
-        
-
+        }         
 
         /* ======== INSCRIPTIONS ======== */
         [HttpGet]
-        public IActionResult Inscription(int Id)
+        public ActionResult Inscription(int Id)
         {
-            MeetingRequest mr1 = context.MeetingRequest.Find(Id);
-            return View(mr1);
+            MeetingRequest mr = context.MeetingRequest.Find(Id);
+            return View(mr);
         }
         [HttpPost]
-        public IActionResult Inscription(int Id, [Bind(include: "State, StudentId, TimeSlotId")] MeetingRequest mr1)
+        public ActionResult Inscription(int Id, [Bind(include: "State, StudentId, TimeSlotId")] MeetingRequest mr)
         {
             if (ModelState.IsValid)
             {
-                context.Add(mr1);
+                context.Add(mr);
                 context.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View();
         }
         /* ======== FIN INSCRIPTIONS ======== */
-
     }
 
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -34,9 +35,5 @@ namespace ProjetStudeal_Final.Models
             UserName = userName;
             IsTutor = isTutor;
         }
-
-
-
-
     }
 }
