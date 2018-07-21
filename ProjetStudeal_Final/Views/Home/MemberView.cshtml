@@ -1,0 +1,25 @@
+﻿@model ProjetStudeal_Final.Models.Member
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<a asp-action="Index">Accueil</a>
+
+<h2> Bienvenue @Model.FirstName </h2>
+<div>
+    <h4>Détails</h4>
+    <pre>ID: @Model.Id</pre>
+    <hr />
+    <div class="dl-horizontal">
+        <h2>@Model.LastName, @Model.FirstName</h2>
+        <p><b>Utilisateur: </b>@Model.UserName</p>
+        <p><b>Mot de passe: </b>@Model.Password</p>
+        <h4><b>Est tuteur?</b> @(Model.IsTutor.Equals(1) ? "Oui" : "Non")</h4>
+    </div>
+    <div>
+        <button asp-action='(MemberEdit, new {id=Id})'>Modifier mon profil ?</button>
+    </div>
+</div>
+<div id="tuto_list">  
+</div>

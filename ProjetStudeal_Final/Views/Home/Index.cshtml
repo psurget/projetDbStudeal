@@ -4,13 +4,13 @@
     ViewData["Title"] = "Accueil";
     Layout = "/Views/Shared/_Layout.cshtml";
 }
-
+<a id="#top"></a>
 <h2>Bienvenue sur l'ecran d'accueil</h2>
 <h4>Cliquez sur connexion pour ouvrir une session.</h4>
 
-<p>
-    <a asp-action="CreateMember">Créer un compte</a>
-</p>
+<div>
+    @Html.ActionLink("Creer un nouveau compte", "CreateMember")
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -53,10 +53,11 @@
                 @item.IsTutor
             </td>
             <td>
-                @Html.ActionLink("Connexion", "connect2", new { id = item.Id })
+                @Html.ActionLink("Connexion", "connect", new { id = item.Id })
             </td>
         </tr>
      }
     </tbody>
  
 </table>
+<a href="#top">Retourner en haut de la page</a>
